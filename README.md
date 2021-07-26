@@ -7,6 +7,21 @@ For detailed instruction on how to use this libarary please refer to the followi
 * [Part 1: Practical queueing using SQL - Rationale and general design](https://medium.com/agency04/practical-queueing-using-sql-part-1-rationale-and-general-design-d180d6848030)
 * [Part 2: Practical queueing using SQL - Do it simply using Spring Boot and JPA](https://medium.com/agency04/practical-queueing-using-sql-part-2-do-it-simply-using-spring-boot-and-jpa-e9cb53f91f36)
 
+To use this library in you gradle project simply add the following repository definition to the project build.gradle:
+
+```groovy
+    maven {
+        url 'https://maven.pkg.github.com/ag04/ag04-jpaqueue'
+        credentials {
+            username = "dmadunic"
+            password = "cd1682474e79efb726afe2dd08f902b3da7aa993"
+        }
+    }
+```
+This package is published in github packages gradle repository, yet unfortunatelly due to the lack of public access to the published libraries this hack is needed.
+
+Password is **readonly** personal access token (PAT) to github packages.
+
 
 ### Requirements
 * [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
