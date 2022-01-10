@@ -60,6 +60,7 @@ dependencyManagement {
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
 	implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+    implementation "org.springframework.integration:spring-integration-core:${springIntegrationVersion}"
 	
 	testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
 }

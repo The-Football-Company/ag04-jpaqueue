@@ -43,6 +43,11 @@ And simply follow the instructions on the console
 
 ## Changelog
 
+# v. 2.0.0 Added support for clustered QueueConsumer
+- Upgraded spring boot to 2.5.7
+- Added spring-integration-core 5.5.6 as dependency
+- Added **QueueConsumerClustered.java** implementation
+
 ### v. 1.2.1. Configured Google Artifact Registry as maven repository for publishing
 - Upgraded gradle wrapper to 7.3.
 
