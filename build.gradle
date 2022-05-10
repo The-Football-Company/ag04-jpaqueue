@@ -42,21 +42,4 @@ publishing {
     }
 }
 
-<<<<<<< HEAD
-afterReleaseBuild.dependsOn publish
-
-dependencyManagement {
-    imports {
-        mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
-    }
-}
-
-dependencies {
-	implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
-	implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
-	
-	testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
-}
-=======
 tasks.release.finalizedBy tasks.publish
->>>>>>> b449602 (Enable better publishing)
