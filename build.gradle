@@ -1,55 +1,19 @@
 plugins {
+    id 'idea'
+    id 'java-library'
 	id 'maven-publish'
-    id "com.google.cloud.artifactregistry.gradle-plugin" version "2.1.4"
-    id 'net.researchgate.release' version '2.8.1'
+    id 'com.google.cloud.artifactregistry.gradle-plugin' version '2.1.5'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'java'
+    id 'nebula.release' version '16.0.0'
 }
-
-apply plugin: 'idea'
 
 group = 'com.ag04.jpaqueue'
-sourceCompatibility = '11'
 
-gradle.projectsEvaluated {
-    tasks.withType(JavaCompile) {
-        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-    }
-}
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
-    maven {
-        url "artifactregistry://europe-west3-maven.pkg.dev/ag04-inventory/maven-repository"
-    }
 }
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId 'com.ag04.jpaqueue'
-            from(components.java)
-        }
-    }
-    repositories {
-        maven {
-            url "artifactregistry://europe-west3-maven.pkg.dev/ag04-inventory/maven-repository"
-        }
-        /*
-        if (project.hasProperty('github_username') && project.hasProperty('github_password')) {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/ag04/ag04-jpaqueue")
-                credentials {
-                    username github_username
-                    password github_password
-                }
-            }
-        }*/
-    }
-}
-
-afterReleaseBuild.dependsOn publish
 
 dependencyManagement {
     imports {
@@ -58,9 +22,25 @@ dependencyManagement {
 }
 
 dependencies {
-	implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
-	implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
     implementation "org.springframework.integration:spring-integration-core:${springIntegrationVersion}"
-	
-	testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
 }
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url "artifactregistry://europe-west3-maven.pkg.dev/tfc-gcr-shared/mvn-public"
+        }
+    }
+}
+
+tasks.release.finalizedBy tasks.publish
